@@ -157,10 +157,10 @@
                   :money 100
                   :booze "Beer"
                   :amount 3}
-            {:keys [result]} (execute {:graph sell-booze-graph
-                                       :start get-profile-data}
-                                      resources
-                                      data)]
+            {:keys [result]} (flow/execute {:graph sell-booze-graph
+                                            :start get-profile-data}
+                                           resources
+                                           data)]
         (is (= {:status :here-you-are}
                result))))
     (testing "not enough booze"
@@ -168,10 +168,10 @@
                   :money 100
                   :booze "Wine"
                   :amount 10}
-            {:keys [result]} (execute {:graph sell-booze-graph
-                                       :start get-profile-data}
-                                      resources
-                                      data)]
+            {:keys [result]} (flow/execute {:graph sell-booze-graph
+                                            :start get-profile-data}
+                                           resources
+                                           data)]
         (is (= {:status :not-enough-booze
                 :available 5}
                result))))
@@ -180,10 +180,10 @@
                   :money 20
                   :booze "Beer"
                   :amount 5}
-            {:keys [result]} (execute {:graph sell-booze-graph
-                                       :start get-profile-data}
-                                      resources
-                                      data)]
+            {:keys [result]} (flow/execute {:graph sell-booze-graph
+                                            :start get-profile-data}
+                                           resources
+                                           data)]
         (is (= {:status :not-enough-money
                 :affordable 2}
                result))))
@@ -192,10 +192,10 @@
                   :money 1000
                   :booze "Whiskey"
                   :amount 30}
-            {:keys [result]} (execute {:graph sell-booze-graph
-                                       :start get-profile-data}
-                                      resources
-                                      data)]
+            {:keys [result]} (flow/execute {:graph sell-booze-graph
+                                            :start get-profile-data}
+                                           resources
+                                           data)]
         (is (= {:status :can-not-sell}
                result))))
     (testing "too young"
@@ -203,10 +203,10 @@
                   :money 50
                   :booze "Whiskey"
                   :amount 1}
-            {:keys [result]} (execute {:graph sell-booze-graph
-                                       :start get-profile-data}
-                                      resources
-                                      data)]
+            {:keys [result]} (flow/execute {:graph sell-booze-graph
+                                            :start get-profile-data}
+                                           resources
+                                           data)]
         (is (= {:status :can-not-sell}
                result))))))
 

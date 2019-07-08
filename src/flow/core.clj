@@ -43,6 +43,9 @@
 
 (defn execute
   [{:keys [graph start]} resources data]
+  (when-not (get graph start)
+    (throw (ex-info "Start node is not defined in the graph"
+                    {::error ::invalid-start-node})))
   (loop [node start
          data' data]
     (let [data'' (execute-node node resources data')
