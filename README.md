@@ -4,6 +4,26 @@ Graph oriented programming.
 
 An alternative way of writing code rich of conditionals.
 
+Instead of
+
+```clojure
+(defn sell-booze
+  [resources data]
+  (let [profile (get-profile-data resources data)]
+    (if (got-the-id? profile)
+      (if (is-under-21? profile)
+        (dont-sell)
+        (let [supply (get-supply resources data)]
+          (if (is-enough-supply? supply)
+            (if (is-enough-money data)
+              (sell)
+              (not-enough-money))
+            (not-enough-supply))))
+      (dont-sell))))
+```
+
+we do
+
 ```clojure
 (def sell-booze-graph
   {get-profile-data {got-the-id? :check-age
